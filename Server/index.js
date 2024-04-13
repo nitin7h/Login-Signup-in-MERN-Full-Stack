@@ -1,3 +1,4 @@
+require('dotenv').config()
 const express = require("express")
 const cors = require("cors")
 const mongoose = require("mongoose")
@@ -13,7 +14,7 @@ const { tokenGenrator, verifyToken } = require("./jwt")
 
 
 
-const Port = 9000;
+const Port = process.env.PORT || 7000
 
 const app = express()
 
@@ -30,9 +31,9 @@ app.use(cors())
 
 
 
+const url = process.env.DataBaseUrl
 
-
-mongoose.connect("mongodb://localhost:27017/signUP")
+mongoose.connect(url)
     .then(() => { console.log("Mongodb Connected...") })
     .catch((error) => {
         console.log("Mongo error " + error);
